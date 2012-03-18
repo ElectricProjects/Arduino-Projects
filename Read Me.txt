@@ -1,0 +1,5 @@
+//
+Rotating Plant Stand March 2012
+//
+
+Uses a stepper motor to rotate a plant one revolution every two days.
