@@ -118,8 +118,7 @@ void loop(){
     stationValue=99;
     trackNumber=99;
   }
-  Serial.print("Track number is ");
-  Serial.println(trackNumber);
+
   sprintf(trackName, "track%03d.mp3", trackNumber);
   playMP3(trackName);
   trackCounter++;
@@ -129,9 +128,7 @@ void loop(){
     trackCounter=0; 
     trackNumber=stationValue;
   }
-   Serial.print("Track number is ");
-  Serial.println(trackNumber);
- Serial.print("---------------------"); 
+
 }
 void playMP3(char* fileName) {
   if (!track.open(&root, fileName, O_READ)) { //Open the file in read mode.
@@ -159,9 +156,8 @@ void playMP3(char* fileName) {
         vol=Left;
         Mp3SetVolume(Left, Left);
       }
-      Serial.print("Volume = ");
-      Serial.print(volRead);
-      Serial.print(" Actual Volume = ");
+
+      Serial.print("Actual Volume = ");
       Serial.println(vol);
       for (int i=0; i < 5; i++)
       {
@@ -169,18 +165,12 @@ void playMP3(char* fileName) {
       }
       stationRead=stationRead/5;  // get average to stop fluctuation
       stationRead = analogRead(stationPin);
-      Serial.print("X = ");
-      Serial.print(x);
-      Serial.print(" Prev Station = ");
-      Serial.print(prevStation);
       Serial.print(" Current Station = ");
       Serial.println(station);
       Serial.print("Track # = ");
       Serial.print(trackNumber);
       Serial.print(" Track name = ");
       Serial.println(trackName);
-      Serial.print("Random # = ");
-      Serial.println(randNumber);
       if(need_data == TRUE) {
         if(!track.read(mp3DataBuffer, sizeof(mp3DataBuffer))) { //Try reading 32 new bytes of the song
           //Oh no! There is no data left to read!
@@ -220,7 +210,6 @@ void playMP3(char* fileName) {
         }
       }
 
-      //Test to see just how much we can do before the audio starts to glitch
       long start_time = millis();
       //delay(120); //Do NOTHING - barely audible glitches
       delay(50); //Do NOTHING - sounds fine
@@ -373,21 +362,9 @@ void stationChange()
 void stopTrack()
 {
    while(!digitalRead(MP3_DREQ)) ; //Wait for DREQ to go high indicating transfer is complete
-  //digitalWrite(MP3_XDCS, HIGH); //Deselect Data
- // Mp3WriteRegister(SCI_MODE, 0x48, MP3_RESET);
-  //detachInterrupt(0);
   track.close(); //Close out this track
-  //sprintf(errorMsg, "Track %s done!", fileName);
-  //Serial.println(errorMsg);
-  // if(playing == FALSE)
-  // return;
-  // track.seekEnd((-128 + offset));
   Serial.println("In Stop Track");
- // detachInterrupt(0);
-  //tell MP3 chip to do a soft reset. Fixes garbles at end, and clears its buffer.
-//Mp3WriteRegister(SCI_MODE, 0x48, MP3_RESET);
-  //digitalWrite(MP3_XDCS, HIGH);
-  //track.close(); //Close out this track
+
 
 }
 
