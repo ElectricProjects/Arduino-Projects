@@ -13,7 +13,7 @@ const int stepsPerRevolution = 200;  // change this to fit the number of steps p
 Stepper myStepper(stepsPerRevolution, 8,9,10,11);            
 
 long stepCount = 0;         // number of steps the motor has taken
-unsigned long interval = (1800000); // half an hour
+unsigned long interval = (5000); // half an hour
 long previousMillis = 0;
 
 void setup() {
@@ -30,7 +30,7 @@ void loop() {
   if(currentMillis - previousMillis > interval) 
   {
   previousMillis = currentMillis; 
-  for (int i=0; i <=11; i++)
+  for (int i=0; i <=23; i++)
   {
   myStepper.step(1);
   stepCount=stepCount+1;
