@@ -10,7 +10,7 @@
  * Used Audacity & iTunes to convert MP3 files to 192kbps
  * PWM: 3, 5, 6, 9, 10, and 11
  * http://code.google.com/p/sdfatlib/
- * You MUST change uint8_t const SS_PIN = 10; 
+ * You MUST change uint8_t const SS_PIN = 10;  
  * on Sd2PinMap.h of the SDfatlib to pin 9;
  * Zen Radio Version 3.8 4/4/12 http://electricprojects.wordpress.com
  ********************************************/
